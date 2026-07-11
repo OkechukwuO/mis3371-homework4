@@ -5,7 +5,10 @@ function showDate() {
         "Today is: " + new Date().toDateString();
 }
 
-window.onload = showDate;
+window.onload = function () {
+    showDate();
+    loadStates();
+};
 
 // Slider function
 function updateSlider() {
@@ -503,6 +506,26 @@ function validateForm() {
         document.getElementById("submitButton").style.display = "none";
 
         alert("Please correct the highlighted errors before submitting.");
+
+    }
+
+}
+
+async function loadStates() {
+
+    try {
+
+        const response = await fetch("states.html");
+
+        const data = await response.text();
+
+        document.getElementById("state").innerHTML = data;
+
+    }
+
+    catch (error) {
+
+        console.log("Unable to load states.");
 
     }
 
