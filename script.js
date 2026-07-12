@@ -157,6 +157,7 @@ function validateFirstName() {
         }
         else {
             deleteCookie("firstName");
+        }
     }
 }
 
