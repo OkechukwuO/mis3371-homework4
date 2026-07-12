@@ -580,6 +580,15 @@ function checkCookie() {
         '<label><input type="checkbox" onclick="startNewUser()"> Not ' +
         firstName +
         '? Click here to start as a NEW USER.</label>';
+
+        loadData("phone");
+        loadData("address");
+        loadData("address2");
+        loadData("city");
+        loadData("state");
+        loadData("zip");
+        loadData("dob");
+        loadData("email");
     }
 }
 
@@ -599,5 +608,23 @@ function startNewUser() {
     document.getElementById("registrationForm").reset();
 
     location.reload();
+
+}
+
+function saveData(id) {
+
+    let element = document.getElementById(id);
+
+    localStorage.setItem(id, element.value);
+
+}
+
+function loadData(id) {
+
+    let value = localStorage.getItem(id);
+
+    if (value != null) {
+        document.getElementById(id).value = value;
+    }
 
 }
