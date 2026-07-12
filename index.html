@@ -113,7 +113,7 @@ Description: Patient registration form for Hummingbird Medical.
         </td>
 
 <td>
-    <select id="state" onchange="validateState()" onblur="validateState()">
+    <select id="state" onchange="validateState(); saveData('state')" onblur="validateState(); saveData('state')">
     </select>
 
     <span id="stateError"></span>
