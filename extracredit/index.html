@@ -1,0 +1,334 @@
+<!--
+Program name: patient-form.html
+Author: Okechukwu Odocha
+Date created: 06/17/2026
+Date last edited: 06/17/2026
+Version: 1.0
+Description: Patient registration form for Hummingbird Medical.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hummingbird Medical - Patient Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="banner">
+    <img src="hbmediclogo.png" width="120">
+
+    <div>
+        <h1>Hummingbird Medical</h1>
+        <h2>Patient Registration Form</h2>
+        <p id="welcomeMessage">Welcome New User!</p>
+        <div id="newUserSection"></div>
+        <p id="today"></p>
+    </div>
+</div>
+
+
+
+<!----Form section--->
+<form id="registrationForm" action="thankyou.html">
+
+<table border="1">
+
+    <!-- Patient Name Section -->
+    <tr>
+        <td colspan="3">
+            Patient's Name (First, MI, Last):
+        </td>
+    </tr>
+
+    <!-- PATIENT NAME INPUTS -->
+    <tr>
+        <td>
+            <input type="text" id="fname" maxlength="30" placeholder="First Name" title="Letters, apostrophes, and dashes only" pattern="[A-Za-z'-]{1,30}" oninput="validateFirstName()" onblur="validateFirstName()">
+            
+            <span id="fnameError"></span>
+        </td>
+
+        <td>
+            <input type="text" id="mi" maxlength="1" placeholder="MI" title="One letter only" pattern="[A-Za-z]" oninput="validateMI()" onblur="validateMI()">
+
+            <span id="miError"></span>
+        </td>
+
+        <td>
+            <input type="text" id="lname" maxlength="30" placeholder="Last Name" title="Letters, apostrophes, numbers 2-5, dashes allowed" pattern="[A-Za-z'-]{1,30}" oninput="validateLastName()" onblur="validateLastName()">
+
+            <span id="lnameError"></span>
+        </td>
+    </tr>
+<!---Phone number--->
+<tr>
+        <td colspan="3">Patient Phone Number:</td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <input type="text" id="phone" maxlength="15" placeholder="(000) 000-0000" title="Format: 000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" oninput="validatePhone()" onblur="validatePhone(); saveData('phone')">
+
+            <span id="phoneError"></span>
+        </td>
+    </tr>
+<!---Address--->
+<tr>
+        <td colspan="3">Address:</td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <input type="text" id="address" maxlength="60" placeholder="Street Address" title="2 to 30 characters required" pattern=".{2,30}" oninput="validateAddress()" onblur="validateAddress(); saveData('address')">
+
+            <span id="addressError"></span>
+        </td>
+    </tr>
+<!---Address Line 2--->
+    <tr>
+    <td colspan="3">Address Line 2 (Optional):</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="text" id="address2" maxlength="60" placeholder="Apt / Suite (optional)" title="Optional - 2 to 30 characters if used" pattern=".{0,30}" oninput="validateAddress2()" onblur="validateAddress2(); saveData('address2')">
+
+        <span id="address2Error"></span>
+    </td>
+</tr>
+<!---City, State, Zip--->
+<tr>
+        <td>City:</td>
+        <td>State:</td>
+        <td>Zip:</td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="text" id="city" maxlength="30" title="2 to 30 characters required" pattern=".{2,30}" oninput="validateCity()" onblur="validateCity(); saveData('city')">
+
+            <span id="cityError"></span>
+        </td>
+
+<td>
+    <select id="state" onchange="validateState(); saveData('state')" onblur="validateState(); saveData('state')">
+    </select>
+
+    <span id="stateError"></span>
+</td>
+
+        <td>
+            <input type="text" id="zip" maxlength="10" placeholder="77002" title="5 digit or ZIP+4 format" pattern="[0-9]{5}" oninput="validateZip()" onblur="validateZip(); saveData('zip')">
+
+            <span id="zipError"></span>
+        </td>
+    </tr>
+<!---Date of Birth, Social Security Number--->
+<tr>
+        <td>Date of Birth:</td>
+        <td colspan="2">Social Security Number:</td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="text" id="dob" maxlength="10" placeholder="MM/DD/YYYY" title="Format MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}" oninput="validateDOB()" onblur="validateDOB(); saveData('dob')">
+
+            <span id="dobError"></span>
+        </td>
+
+        <td colspan="2">
+            <input type="password" id="ssn" maxlength="11" title="Enter SSN (###-##-####)" oninput="formatSSN(); validateSSN();" onblur="validateSSN()">
+
+            <span id="ssnError"></span>
+        </td>
+    </tr>
+<!---Email Address--->
+<tr>
+        <td colspan="3">Email Address:</td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <input type="email" id="email" maxlength="50" placeholder="name@example.com" title="Enter a valid email address like name@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninput="validateEmail()" onblur="validateEmail(); saveData('email')">
+
+            <span id="emailError"></span>
+        </td>
+    </tr>
+<!---Current Symptoms--->
+<tr>
+    <td colspan="3" style="text-align:center;">
+        <h3>Helpful Health Resources</h3>
+
+        <iframe
+            src="https://www.cdc.gov/"
+            width="700"
+            height="400"
+            title="CDC Website">
+        </iframe>
+
+    </td>
+</tr>
+<tr>
+        <td colspan="3">Current Symptoms (Max 500 characters):</td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <textarea maxlength="500" rows="5" cols="60"
+                placeholder="Describe your symptoms..."></textarea>
+        </td>
+    </tr>
+<!---Conditions experienced checkboxes--->
+<tr>
+        <td colspan="3">Conditions Experienced (Check all that apply):</td>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" id="fever"> Fever</td>
+        <td><input type="checkbox" id="headache"> Headache</td>
+        <td><input type="checkbox" id="cough"> Cough</td>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" id="fatigue"> Fatigue</td>
+        <td><input type="checkbox" id="nausea"> Nausea</td>
+        <td></td>
+    </tr>
+<!---Gender--->
+<tr>
+    <td colspan="3">Gender:</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="radio" name="gender" value="Male"> Male
+
+        <input type="radio" name="gender" value="Female"> Female
+
+        <input type="radio" name="gender" value="Other"> Other
+    </td>
+</tr>
+<!---Insurance--->
+<tr>
+    <td colspan="3">Do you have insurance?</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="radio" name="insurance" value="Yes"> Yes
+
+        <input type="radio" name="insurance" value="No"> No
+    </td>
+</tr>
+<!---Is patient vaccinated--->
+<tr>
+    <td colspan="3">Are you vaccinated?</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="radio" name="vaccinated" value="Yes"> Yes
+
+        <input type="radio" name="vaccinated" value="No"> No
+    </td>
+</tr>
+<!---Health rating--->
+<tr>
+    <td colspan="3">
+        Rate Your Overall Health (1 = Poor, 10 = Excellent):
+    </td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="range" id="health" min="1" max="10" value="5" oninput="updateSlider()"><span id="sliderValue">5</span>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10
+    </td>
+</tr>
+<!---User ID--->
+<tr>
+    <td colspan="3">Desired User ID:</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="text" id="userid" maxlength="20" placeholder="Enter User ID" title="5-20 characters. Cannot start with a number." oninput="validateUserID()" onblur="validateUserID()">
+
+        <span id="useridError"></span>
+    </td>
+</tr>
+<!---Password--->
+<tr>
+    <td colspan="3">Create Password:</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="password" id="password1" maxlength="20" placeholder="Enter Password" title="At least 8 characters with an uppercase letter, lowercase letter, and number." oninput="validatePassword()" onblur="validatePassword()">
+
+        <span id="password1Error"></span>
+    </td>
+</tr>
+<!---Reenter Password--->
+<tr>
+    <td colspan="3">Re-enter Password:</td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="password" id="password2" maxlength="20" placeholder="Re-enter Password" oninput="validatePasswordMatch()" onblur="validatePasswordMatch()">
+
+        <span id="password2Error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="3">
+        <input type="checkbox" id="rememberMe" checked>
+        Remember Me
+    </td>
+</tr>
+    
+<!---Form buttons--->
+<tr>
+    <td colspan="3" style="text-align:center;">
+        
+        <input type="reset" value="CLEAR">
+
+        <input type="button" value="REVIEW" onclick="reviewForm()">
+
+        <input type="button" value="VALIDATE" onclick="validateForm()">
+
+        <input type="submit" id="submitButton" value="SUBMIT" style="display:none;">
+
+
+    </td>
+</tr>
+</table>
+
+<div id="reviewSection"></div>
+    
+</form>
+<!---footer section--->
+<div class="footer">
+
+    <p>Hummingbird Medical</p>
+    <p>PO BOX 98765, Houston, TX 12345</p>
+
+    <button onclick="alert('Contact us at support@hummingbirdmedical.com')">
+        CONTACT US
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
