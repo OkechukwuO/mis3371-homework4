@@ -102,7 +102,7 @@ function reviewForm() {
     }
 
     
-    document.getElementById("reviewSection").innerHTML =
+    document.getElementById("modalReview").innerHTML =
         "<h2>PLEASE REVIEW THIS INFORMATION</h2>" +
         "<p>Name: " +
         firstName + " " +
@@ -136,6 +136,8 @@ function reviewForm() {
 
         "<p>User ID: " + userId + "</p>" +
         "<p>Password Status: " + (passwordError === "" ? "PASS" : passwordError) + "</p>";
+
+        openModal();
 }
 
 function validateFirstName() {
@@ -627,4 +629,12 @@ function loadData(id) {
         document.getElementById(id).value = value;
     }
 
+}
+
+function openModal() {
+    document.getElementById("reviewModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("reviewModal").style.display = "none";
 }
