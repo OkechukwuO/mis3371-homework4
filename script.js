@@ -8,6 +8,7 @@ function showDate() {
 window.onload = function () {
     showDate();
     loadStates();
+    checkCookie();
 };
 
 // Slider function
@@ -150,6 +151,7 @@ function validateFirstName() {
     }
     else {
         error.innerHTML = "";
+        setCookie("firstName", firstName, 2);
     }
 
 }
@@ -529,4 +531,45 @@ async function loadStates() {
 
     }
 
+}
+
+function setCookie(name, value, days) {
+
+    let expires = new Date();
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+
+    document.cookie = name + "=" + value +
+        ";expires=" + expires.toUTCString() +
+        ";path=/";
+}
+
+function getCookie(name) {
+
+    let cookieName = name + "=";
+    let cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+
+        let c = cookies[i].trim();
+
+        if (c.indexOf(cookieName) == 0) {
+            return c.substring(cookieName.length);
+        }
+    }
+
+    return "";
+}
+
+function checkCookie() {
+
+    let firstName = getCookie("firstName");
+
+    if (firstName != "") {
+
+        document.getElementById("welcomeMessage").innerHTML =
+            "Welcome back, " + firstName + "!";
+
+        document.getElementById("fname").value = firstName;
+
+    }
 }
