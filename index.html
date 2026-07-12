@@ -69,7 +69,7 @@ Description: Patient registration form for Hummingbird Medical.
 
     <tr>
         <td colspan="3">
-            <input type="text" id="phone" maxlength="15" placeholder="(000) 000-0000" title="Format: 000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" oninput="validatePhone()" onblur="validatePhone()">
+            <input type="text" id="phone" maxlength="15" placeholder="(000) 000-0000" title="Format: 000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" oninput="validatePhone()" onblur="validatePhone(); saveData('phone')">
 
             <span id="phoneError"></span>
         </td>
@@ -81,7 +81,7 @@ Description: Patient registration form for Hummingbird Medical.
 
     <tr>
         <td colspan="3">
-            <input type="text" id="address" maxlength="60" placeholder="Street Address" title="2 to 30 characters required" pattern=".{2,30}" oninput="validateAddress()" onblur="validateAddress()">
+            <input type="text" id="address" maxlength="60" placeholder="Street Address" title="2 to 30 characters required" pattern=".{2,30}" oninput="validateAddress()" onblur="validateAddress(); saveData('address')">
 
             <span id="addressError"></span>
         </td>
@@ -93,7 +93,7 @@ Description: Patient registration form for Hummingbird Medical.
 
 <tr>
     <td colspan="3">
-        <input type="text" id="address2" maxlength="60" placeholder="Apt / Suite (optional)" title="Optional - 2 to 30 characters if used" pattern=".{0,30}" oninput="validateAddress2()" onblur="validateAddress2()">
+        <input type="text" id="address2" maxlength="60" placeholder="Apt / Suite (optional)" title="Optional - 2 to 30 characters if used" pattern=".{0,30}" oninput="validateAddress2()" onblur="validateAddress2(); saveData('address2')">
 
         <span id="address2Error"></span>
     </td>
@@ -107,7 +107,7 @@ Description: Patient registration form for Hummingbird Medical.
 
     <tr>
         <td>
-            <input type="text" id="city" maxlength="30" title="2 to 30 characters required" pattern=".{2,30}" oninput="validateCity()" onblur="validateCity()">
+            <input type="text" id="city" maxlength="30" title="2 to 30 characters required" pattern=".{2,30}" oninput="validateCity()" onblur="validateCity(); saveData('city')">
 
             <span id="cityError"></span>
         </td>
@@ -120,7 +120,7 @@ Description: Patient registration form for Hummingbird Medical.
 </td>
 
         <td>
-            <input type="text" id="zip" maxlength="10" placeholder="77002" title="5 digit or ZIP+4 format" pattern="[0-9]{5}" oninput="validateZip()" onblur="validateZip()">
+            <input type="text" id="zip" maxlength="10" placeholder="77002" title="5 digit or ZIP+4 format" pattern="[0-9]{5}" oninput="validateZip()" onblur="validateZip(); saveData('zip')">
 
             <span id="zipError"></span>
         </td>
@@ -133,7 +133,7 @@ Description: Patient registration form for Hummingbird Medical.
 
     <tr>
         <td>
-            <input type="text" id="dob" maxlength="10" placeholder="MM/DD/YYYY" title="Format MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}" oninput="validateDOB()" onblur="validateDOB()">
+            <input type="text" id="dob" maxlength="10" placeholder="MM/DD/YYYY" title="Format MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}" oninput="validateDOB()" onblur="validateDOB(); saveData('dob')">
 
             <span id="dobError"></span>
         </td>
@@ -151,7 +151,7 @@ Description: Patient registration form for Hummingbird Medical.
 
     <tr>
         <td colspan="3">
-            <input type="email" id="email" maxlength="50" placeholder="name@example.com" title="Enter a valid email address like name@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninput="validateEmail()" onblur="validateEmail()">
+            <input type="email" id="email" maxlength="50" placeholder="name@example.com" title="Enter a valid email address like name@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninput="validateEmail()" onblur="validateEmail(); saveData('email')">
 
             <span id="emailError"></span>
         </td>
