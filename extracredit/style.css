@@ -60,8 +60,12 @@ table td {
 .modal-content {
     background-color: white;
     width: 60%;
-    margin: 8% auto;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    margin: 5% auto;
     padding: 20px;
+
     border-radius: 10px;
     text-align: left;
 }
