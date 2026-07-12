@@ -151,9 +151,13 @@ function validateFirstName() {
     }
     else {
         error.innerHTML = "";
-        setCookie("firstName", firstName, 2);
+        
+        if (document.getElementById("rememberMe").checked) {
+            setCookie("firstName", firstName, 2);
+        }
+        else {
+            deleteCookie("firstName");
     }
-
 }
 
 function validateMI() {
@@ -572,4 +576,11 @@ function checkCookie() {
         document.getElementById("fname").value = firstName;
 
     }
+}
+
+function deleteCookie(name) {
+
+    document.cookie =
+        name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 }
