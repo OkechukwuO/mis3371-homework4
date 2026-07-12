@@ -571,11 +571,15 @@ function checkCookie() {
 
     if (firstName != "") {
 
-        document.getElementById("welcomeMessage").innerHTML =
-            "Welcome back, " + firstName + "!";
+    document.getElementById("welcomeMessage").innerHTML =
+        "Welcome back, " + firstName + "!";
 
-        document.getElementById("fname").value = firstName;
+    document.getElementById("fname").value = firstName;
 
+    document.getElementById("newUserSection").innerHTML =
+        '<label><input type="checkbox" onclick="startNewUser()"> Not ' +
+        firstName +
+        '? Click here to start as a NEW USER.</label>';
     }
 }
 
@@ -583,5 +587,17 @@ function deleteCookie(name) {
 
     document.cookie =
         name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+}
+
+function startNewUser() {
+
+    deleteCookie("firstName");
+
+    localStorage.clear();
+
+    document.getElementById("registrationForm").reset();
+
+    location.reload();
 
 }
