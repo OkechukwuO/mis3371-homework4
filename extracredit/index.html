@@ -120,7 +120,7 @@ Description: Patient registration form for Hummingbird Medical.
 </td>
 
         <td>
-            <input type="text" id="zip" maxlength="10" placeholder="77002" title="5 digit or ZIP+4 format" pattern="[0-9]{5}" oninput="validateZip()" onblur="validateZip(); saveData('zip')">
+            <input type="text" id="zip" maxlength="10" placeholder="77002" title="5 digit or ZIP+4 format" pattern="[0-9]{5}" oninput="validateZip()" onblur="validateZip(); saveData('zip'); lookupZip()">
 
             <span id="zipError"></span>
         </td>
