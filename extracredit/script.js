@@ -718,3 +718,14 @@ function updateProgress() {
     document.getElementById("progressBar").style.width = percent + "%";
 
 }
+
+function checkCaps(event) {
+
+    if (event.getModifierState("CapsLock")) {
+        document.getElementById("capsWarning").style.display = "inline";
+    }
+    else {
+        document.getElementById("capsWarning").style.display = "none";
+    }
+
+}
