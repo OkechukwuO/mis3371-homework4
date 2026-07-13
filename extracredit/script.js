@@ -635,3 +635,40 @@ function openModal() {
 function closeModal() {
     document.getElementById("reviewModal").style.display = "none";
 }
+
+async function lookupZip() {
+
+    let zip = document.getElementById("zip").value;
+
+    if (zip.length != 5) {
+        return;
+    }
+
+    try {
+
+        let response = await fetch("https://api.zippopotam.us/us/" + zip);
+
+        if (!response.ok) {
+            return;
+        }
+
+        let data = await response.json();
+
+        document.getElementById("city").value =
+            data.places[0]["place name"];
+
+        document.getElementById("state").value =
+            data.places[0]["state abbreviation"];
+
+        saveData("city");
+        saveData("state");
+
+    }
+
+    catch (error) {
+
+        console.log("ZIP lookup failed.");
+
+    }
+
+}
