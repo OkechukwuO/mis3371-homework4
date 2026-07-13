@@ -506,13 +506,10 @@ function validateForm() {
         document.getElementById("password2Error").innerHTML == ""
     ) {
 
-        document.getElementById("submitButton").style.display = "inline";
-
+        reviewForm();
     }
 
     else {
-
-        document.getElementById("submitButton").style.display = "none";
 
         alert("Please correct the highlighted errors before submitting.");
 
