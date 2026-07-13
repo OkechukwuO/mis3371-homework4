@@ -276,11 +276,19 @@ Description: Patient registration form for Hummingbird Medical.
 
 <tr>
     <td colspan="3">
-        <input type="password" id="password1" maxlength="20" placeholder="Enter Password" title="At least 8 characters with an uppercase letter, lowercase letter, and number." oninput="validatePassword()" onblur="validatePassword()">
+        <input type="password" id="password1" maxlength="20" placeholder="Enter Password" title="At least 8 characters with an uppercase letter, lowercase letter, and number." oninput="validatePassword()" onblur="validatePassword()" onkeyup="checkCaps(event)">
         
         <button type="button" onclick="togglePassword('password1')">
             👁
         </button>
+
+        <span id="capsWarning"
+        style="color:red; display:none;">
+            Caps Lock is ON
+        </span>
+
+        <br>
+        
         <span id="password1Error"></span>
     </td>
 </tr>
