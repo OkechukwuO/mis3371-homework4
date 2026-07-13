@@ -691,23 +691,29 @@ function togglePassword(id) {
 
 function updateProgress() {
 
-    let fields = document.querySelectorAll("input, select, textarea");
-
+    let total = 15;
     let completed = 0;
 
-    fields.forEach(function(field) {
+    if (document.getElementById("fname").value.trim() != "") completed++;
+    if (document.getElementById("lname").value.trim() != "") completed++;
+    if (document.getElementById("dob").value.trim() != "") completed++;
+    if (document.getElementById("phone").value.trim() != "") completed++;
+    if (document.getElementById("address").value.trim() != "") completed++;
+    if (document.getElementById("city").value.trim() != "") completed++;
+    if (document.getElementById("state").value.trim() != "") completed++;
+    if (document.getElementById("zip").value.trim() != "") completed++;
+    if (document.getElementById("email").value.trim() != "") completed++;
+    if (document.getElementById("userid").value.trim() != "") completed++;
+    if (document.getElementById("password1").value.trim() != "") completed++;
+    if (document.getElementById("password2").value.trim() != "") completed++;
 
-        if (
-            (field.type === "checkbox" || field.type === "radio")
-                ? field.checked
-                : field.value.trim() !== ""
-        ) {
-            completed++;
-        }
+    if (document.querySelector('input[name="gender"]:checked')) completed++;
 
-    });
+    if (document.querySelector('input[name="insurance"]:checked')) completed++;
 
-    let percent = (completed / fields.length) * 100;
+    if (document.querySelector('input[name="vaccinated"]:checked')) completed++;
+
+    let percent = (completed / total) * 100;
 
     document.getElementById("progressBar").style.width = percent + "%";
 
