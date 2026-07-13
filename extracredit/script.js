@@ -9,6 +9,8 @@ window.onload = function () {
     showDate();
     loadStates();
     checkCookie();
+
+    updateProgress();
 };
 
 // Slider function
@@ -684,5 +686,29 @@ function togglePassword(id) {
     else {
         field.type = "password";
     }
+
+}
+
+function updateProgress() {
+
+    let fields = document.querySelectorAll("input, select, textarea");
+
+    let completed = 0;
+
+    fields.forEach(function(field) {
+
+        if (
+            (field.type === "checkbox" || field.type === "radio")
+                ? field.checked
+                : field.value.trim() !== ""
+        ) {
+            completed++;
+        }
+
+    });
+
+    let percent = (completed / fields.length) * 100;
+
+    document.getElementById("progressBar").style.width = percent + "%";
 
 }
